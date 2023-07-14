@@ -5,6 +5,7 @@ import userRoute from './routes/userRoutes.js'
 import authRoute from './routes/authRoutes.js'
 import placesRoute from './routes/placesRoutes.js'
 import destinationsRoute from './routes/destinationsRoutes.js'
+import errorHandler from './controllers/errorController.js';
 
 dotenv.config();
 const app = express()
@@ -27,6 +28,9 @@ app.use('/api/users', userRoute)
 app.use('/api/auth', authRoute)
 app.use('/api/places', placesRoute)
 app.use('/api/destinations', destinationsRoute)
+
+// Global Error Handler
+app.use(errorHandler)
 
 app.listen(8800, () => {
   connectDB()
