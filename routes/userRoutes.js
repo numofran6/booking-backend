@@ -1,9 +1,12 @@
 import express from 'express';
-import { login, register } from '../controllers/usersController.js';
+import { deleteUser, getAllUsers, getOneUser, updateUser } from '../controllers/usersController.js';
+import { verifyAdmin, verifyUser } from '../utils/verifyToken.js';
 
 const router = express.Router();
 
-router.post('/register', register)
-router.post('/login', login)
+router.get('/', verifyAdmin, getAllUsers);
+router.get('/:id', verifyUser, getOneUser);
+router.patch('/:id', verifyUser, updateUser);
+router.delete('/:id', verifyUser, deleteUser);
 
 export default router;

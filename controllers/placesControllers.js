@@ -20,11 +20,15 @@ export const createPlace = catchAsync(async (req, res, next) => {
   res.status(200).json(newPlace)
 })
 
+
+
 export const updatePlace = catchAsync(async (req, res, next) => {
   const updatedPlace = await Places.findByIdAndUpdate(req.params.id, req.body, { new: true })
 
   res.status(200).json(updatedPlace)
 })
+
+
 
 export const deletePlace = catchAsync(async (req, res, next) => {
   await Places.findByIdAndDelete(req.params.id)
@@ -34,11 +38,15 @@ export const deletePlace = catchAsync(async (req, res, next) => {
   })
 })
 
+
+
 export const getOnePlace = catchAsync(async (req, res, next) => {
   const place = await Places.findById(req.params.id)
 
   res.status(200).json(place)
 })
+
+
 
 export const getAllPlaces = catchAsync(async (req, res, next) => {
   const allPlaces = await Places.find()

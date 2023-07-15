@@ -41,7 +41,7 @@ const PlacesSchema = new Schema({
     min: 0,
     max: 5
   },
-  instructors: {
+  destinations: {
     type: [String]
   },
   featured: {

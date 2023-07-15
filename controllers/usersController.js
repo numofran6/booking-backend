@@ -1,35 +1,28 @@
 import User from "../models/Users.js";
-import { AppError } from "../utils/AppError.js";
 import { catchAsync } from "../utils/helpers.js";
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 
-export const register = catchAsync(async (req, res, next) => {
-  const newUser = await User.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-    confirmPassword: req.body.confirmPassword
-  })
+export const updateUser = catchAsync(async (req, res, next) => {
+  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true })
 
-  res.status(201).json({ status: 'User Created' })
+  res.status(200).json(updatedUser)
 })
 
-export const login = catchAsync(async (req, res, next) => {
-  const { email } = req.body
+export const deleteUser = catchAsync(async (req, res, next) => {
+  await User.findByIdAndDelete(req.params.id)
 
-  const user = await User.findOne({ email }).select('+password');
+  res.status(200).json({
+    status: 'User Deleted'
+  })
+})
 
-  if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
-    return next(new AppError('Invalid username or password', 400))
-  }
+export const getOneUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id)
 
-  const { password, isAdmin, ...userInfo } = user._doc
+  res.status(200).json(user)
+})
 
-  const token = jwt.sign({ id: userInfo._id, isAdmin }, process.env.JWT_SECRET, { expiresIn: `${process.env.JWT_EXPIRY}` })
+export const getAllUsers = catchAsync(async (req, res, next) => {
+  const allUsers = await User.find()
 
-  res
-    .cookie('access_token', token, { httpOnly: true })
-    .status(200)
-    .json(userInfo)
+  res.status(200).json(allUsers)
 })
