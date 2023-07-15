@@ -21,7 +21,7 @@ export const verifyUser = (req, res, next) => {
     if (req.user.id === req.params.id || req.user.isAdmin) {
       next()
     } else {
-      return next(new AppError('Invalid token', 403));
+      return next(new AppError('Not authenticated', 403));
     }
   })
 }
@@ -31,7 +31,7 @@ export const verifyAdmin = (req, res, next) => {
     if (req.user.isAdmin) {
       next()
     } else {
-      return next(new AppError('Invalid token', 403));
+      return next(new AppError('Not authenticated', 403));
     }
   })
 }
