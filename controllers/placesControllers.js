@@ -25,3 +25,23 @@ export const updatePlace = catchAsync(async (req, res, next) => {
 
   res.status(200).json(updatedPlace)
 })
+
+export const deletePlace = catchAsync(async (req, res, next) => {
+  await Places.findByIdAndDelete(req.params.id)
+
+  res.status(200).json({
+    status: 'Place Deleted'
+  })
+})
+
+export const getOnePlace = catchAsync(async (req, res, next) => {
+  const place = await Places.findById(req.params.id)
+
+  res.status(200).json(place)
+})
+
+export const getAllPlaces = catchAsync(async (req, res, next) => {
+  const allPlaces = await Places.find()
+
+  res.status(200).json(allPlaces)
+})

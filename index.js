@@ -6,6 +6,7 @@ import authRoute from './routes/authRoutes.js'
 import placesRoute from './routes/placesRoutes.js'
 import destinationsRoute from './routes/destinationsRoutes.js'
 import errorHandler from './controllers/errorController.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const app = express()
@@ -23,6 +24,7 @@ const connectDB = async () => {
 
 // Middlewares
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/api/users', userRoute)
 app.use('/api/auth', authRoute)
