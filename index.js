@@ -7,6 +7,7 @@ import placesRoute from './routes/placesRoutes.js'
 import destinationsRoute from './routes/destinationsRoutes.js'
 import errorHandler from './controllers/errorController.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors'
 
 dotenv.config();
 const app = express()
@@ -23,12 +24,13 @@ const connectDB = async () => {
 }
 
 // Middlewares
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 
 app.use('/api/users', userRoute)
 app.use('/api/auth', authRoute)
-app.use('/api/places', placesRoute)
+app.use('/api/regions', placesRoute)
 app.use('/api/destinations', destinationsRoute)
 
 // Global Error Handler

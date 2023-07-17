@@ -1,16 +1,16 @@
 import express from 'express';
 import {
-  countByDestination, countByType, createPlace, deletePlace, getAllPlaces, getOnePlace, updatePlace
-} from '../controllers/placesControllers.js';
+  countByDestination, countByType, createRegion, deleteRegion, getAllRegions, getOneRegion, updateRegion,
+} from '../controllers/regionControllers.js';
 import { verifyAdmin } from '../utils/verifyToken.js';
 
 const router = express.Router();
 
-router.get('/', getAllPlaces);
-router.get('/find/:id', getOnePlace);
-router.post('/', verifyAdmin, createPlace);
-router.patch('/:id', verifyAdmin, updatePlace);
-router.delete('/:id', verifyAdmin, deletePlace);
+router.get('/', getAllRegions);
+router.get('/find/:id', getOneRegion);
+router.post('/', createRegion); //admin
+router.patch('/:id', updateRegion); //admin
+router.delete('/:id', deleteRegion); //admin
 
 router.get('/countDestinations', countByDestination)
 router.get('/countType', countByType)

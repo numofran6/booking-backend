@@ -1,5 +1,5 @@
 import Destination from "../models/Destinations.js";
-import Places from "../models/Places.js";
+import Places from "../models/Region.js";
 import { catchAsync } from "../utils/helpers.js";
 
 export const createDestination = catchAsync(async (req, res, next) => {

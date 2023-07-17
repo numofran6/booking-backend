@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
-const PlacesSchema = new Schema({
+const regionsSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -50,6 +50,6 @@ const PlacesSchema = new Schema({
   }
 })
 
-const Places = mongoose.model('places', PlacesSchema)
+const Region = mongoose.model('places', regionsSchema)
 
-export default Places
+export default Region
