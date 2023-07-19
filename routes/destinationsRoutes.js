@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.get('/', getAllDestinations);
 router.get('/:id', getOneDestination);
-router.post('/:placeId', verifyAdmin, createDestination);
-router.patch('/:id', verifyAdmin, updateDestination);
-router.delete('/:id/:placeId', verifyAdmin, deleteDestination);
+router.post('/:placeId', createDestination); //admin
+router.patch('/:id', updateDestination); //admin
+router.delete('/:id/:placeId', deleteDestination); //admin
 
 export default router;

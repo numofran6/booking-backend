@@ -9,7 +9,9 @@ export const createDestination = catchAsync(async (req, res, next) => {
     title: req.body.title,
     desc: req.body.desc,
     price: req.body.price,
-    maxPeople: req.body.maxPeople
+    maxPeople: req.body.maxPeople,
+    featured: req.body.featured,
+    rating: req.body.rating
   })
 
   await Places.findByIdAndUpdate(placeId, { $push: { destinations: newDestination._id } })

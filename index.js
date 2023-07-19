@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import userRoute from './routes/userRoutes.js'
 import authRoute from './routes/authRoutes.js'
-import placesRoute from './routes/placesRoutes.js'
+import regionsRoute from './routes/regionsRoutes.js'
 import destinationsRoute from './routes/destinationsRoutes.js'
 import errorHandler from './controllers/errorController.js';
 import cookieParser from 'cookie-parser';
@@ -30,7 +30,7 @@ app.use(cookieParser())
 
 app.use('/api/users', userRoute)
 app.use('/api/auth', authRoute)
-app.use('/api/regions', placesRoute)
+app.use('/api/regions', regionsRoute)
 app.use('/api/destinations', destinationsRoute)
 
 // Global Error Handler

@@ -16,6 +16,14 @@ const destinationsSchema = new Schema({
   maxPeople: {
     type: Number,
     required: true,
+  },
+  featured: {
+    type: Boolean,
+    default: false
+  },
+  rating: {
+    type: Number,
+    default: 5
   }
 }, { timestamps: true })
 
