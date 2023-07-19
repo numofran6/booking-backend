@@ -17,6 +17,10 @@ const destinationsSchema = new Schema({
     type: Number,
     required: true,
   },
+  region: {
+    type: String,
+    required: true,
+  },
   featured: {
     type: Boolean,
     default: false

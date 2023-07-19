@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   countByDestination, countByType, createRegion, deleteRegion, getAllRegions, getOneRegion, updateRegion,
-} from '../controllers/regionControllers.js';
+} from '../controllers/regionsController.js';
 import { verifyAdmin } from '../utils/verifyToken.js';
 
 const router = express.Router();
