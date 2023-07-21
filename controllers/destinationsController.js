@@ -50,15 +50,29 @@ export const getOneDestination = catchAsync(async (req, res, next) => {
   res.status(200).json(destination)
 })
 
-
-
 export const getAllDestinations = catchAsync(async (req, res, next) => {
-  const { min, max, region, ...otherQueries } = req.query
+  const { min, max, region, price, ...otherQueries } = req.query;
 
-  const allDestinations = await Destination.find({
-    ...otherQueries, maxPeople: { $gt: min | 1, $lt: max || 9999 },
-    region: { $regex: new RegExp(region, 'i') },
-  }).limit(req.query.limit)
 
-  res.status(200).json(allDestinations)
-})
+
+  const regions = Array.isArray(region) ? region : [region].filter(Boolean);
+
+
+  let query = { ...otherQueries, maxPeople: { $gt: min | 1, $lt: max || 9999 } };
+
+  if (regions.length > 0) {
+    query.region = { $in: regions.map((r) => new RegExp(r, 'i')) };
+  }
+
+  if (price) {
+    const destinationPrice = price.split('-')
+    const lowestPrice = destinationPrice[0]
+    const highestPrice = ++destinationPrice[1]
+
+    query.price = { $gt: lowestPrice, $lt: highestPrice }
+  }
+
+  const allDestinations = await Destination.find(query).limit(req.query.limit);
+
+  res.status(200).json(allDestinations);
+});
