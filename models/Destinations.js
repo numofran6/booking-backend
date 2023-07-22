@@ -28,7 +28,11 @@ const destinationsSchema = new Schema({
   rating: {
     type: Number,
     default: 5
-  }
+  },
+  activity: {
+    type: String,
+    required: true,
+  },
 }, { timestamps: true })
 
 

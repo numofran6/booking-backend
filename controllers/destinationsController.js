@@ -12,7 +12,8 @@ export const createDestination = catchAsync(async (req, res, next) => {
     maxPeople: req.body.maxPeople,
     featured: req.body.featured,
     rating: req.body.rating,
-    region: req.body.region
+    region: req.body.region,
+    activity: req.body.activity
   })
 
   await Region.findByIdAndUpdate(placeId, { $push: { destinations: newDestination._id } })
@@ -51,17 +52,19 @@ export const getOneDestination = catchAsync(async (req, res, next) => {
 })
 
 export const getAllDestinations = catchAsync(async (req, res, next) => {
-  const { min, max, region, price, ...otherQueries } = req.query;
-
-
+  const { min, max, region, price, activity, ...otherQueries } = req.query;
 
   const regions = Array.isArray(region) ? region : [region].filter(Boolean);
-
+  const activities = Array.isArray(activity) ? activity : [activity].filter(Boolean);
 
   let query = { ...otherQueries, maxPeople: { $gt: min | 1, $lt: max || 9999 } };
 
   if (regions.length > 0) {
     query.region = { $in: regions.map((r) => new RegExp(r, 'i')) };
+  }
+
+  if (activities.length > 0) {
+    query.activity = { $in: activities.map((a) => new RegExp(a, 'i')) };
   }
 
   if (price) {
