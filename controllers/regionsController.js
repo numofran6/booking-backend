@@ -11,7 +11,7 @@ export const createRegion = catchAsync(async (req, res, next) => {
     cheapestPrice: req.body.cheapestPrice,
     desc: req.body.desc,
     title: req.body.title,
-    photos: req.body.photos,
+    image: req.body.image,
     rating: req.body.rating,
     instructors: req.body.instructors,
     featured: req.body.featured

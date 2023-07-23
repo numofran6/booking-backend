@@ -33,8 +33,8 @@ const regionsSchema = new Schema({
     type: String,
     required: true
   },
-  photos: {
-    type: [String],
+  image: {
+    type: String,
   },
   rating: {
     type: Number,
