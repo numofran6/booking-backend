@@ -5,6 +5,8 @@ import userRoute from './routes/userRoutes.js'
 import authRoute from './routes/authRoutes.js'
 import regionsRoute from './routes/regionsRoutes.js'
 import destinationsRoute from './routes/destinationsRoutes.js'
+import bookedToursRoute from './routes/bookedToursRoutes.js'
+import tourBuddyRoute from './routes/tourBuddyRoutes.js'
 import errorHandler from './controllers/errorController.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
@@ -32,6 +34,8 @@ app.use('/api/users', userRoute)
 app.use('/api/auth', authRoute)
 app.use('/api/regions', regionsRoute)
 app.use('/api/destinations', destinationsRoute)
+app.use('/api/bookedtours', bookedToursRoute)
+app.use('/api/tourbuddy', tourBuddyRoute)
 
 // Global Error Handler
 app.use(errorHandler)
