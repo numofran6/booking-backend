@@ -6,7 +6,7 @@ export const createTourBuddy = catchAsync(async (req, res, next) => {
     name: req.body.name,
     status: req.body.status,
     region: req.body.region,
-    img: req.body.img,
+    image: req.body.image,
   })
 
   res.status(201).json(newTourBuddy)

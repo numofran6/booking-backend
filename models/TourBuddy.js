@@ -14,7 +14,7 @@ const tourBuddySchema = new Schema({
     type: String,
     required: true,
   },
-  img: {
+  image: {
     type: String,
   }
 }, { timestamps: true })
